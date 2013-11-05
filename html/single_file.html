@@ -1,0 +1,178 @@
+<html>
+<head>
+<script type="text/javascript" src="/jquery"></script>
+<link rel="stylesheet" href="/bootstrap.min.css">
+<link rel="stylesheet" href="/bootstrap-responsive.min.css">
+<script type="text/javascript" src="/bootstrap.min.js"></script>
+<link href="/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/prettify.js"></script>
+
+<style type="text/css">
+    body {
+        padding-top: 60px;
+    }
+    #evaluateButton {
+        padding-top: 60px;
+    }
+    pre.prettyprint {
+        padding-left: 30px;
+    }
+</style>
+
+</head>
+<body>
+    <span style="display:none" id="md5forloading">MD5OFFILE</span>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Analysis of Web Artifacts</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/graphs">Graphs</a></li>
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="/map">Map</a></li>
+                        <li><a href="/clusterize">Clusterize</a></li>
+                        <li><a href="/clusters">Clusters</a></li>
+                        <li><a href="/top10">Top 10</a></li>
+                    </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-top: 10px">
+<div class="row">
+    <div class="span6">
+        <div class="row">
+            <div class="span2">
+                <button class="btn btn-primary" id="addComment">Add Comment</button>
+                <div class="row">
+                <span class="span2 text-success" style="visibility: hidden" id="commentInserted">Comment Inserted!</span>
+                </div>
+            </div>
+            <div class="span4">
+                <textarea class="span4" id="commentText" rows="4" placeholder="Insert New Comment here..."></textarea>
+                <div class="row">
+                    <span class="text-center span4"><small id="counterComment">Characters left: 640</small></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!--<div class="span6" id="evaluateButton">
+                <button class="btn btn-primary text-center" id="evaluateFile">Evaluate File</button>
+                <span class="text-warning" style="margin-left:20px"> This is an experimental feature</span>
+            </div>
+        -->
+            <div class="row">
+        <table class="span6 table  table-striped" id="tableEval" style="display:none">
+            <thead>
+                <tr>
+                    <th colspan="2">Details of Evaluation</th>
+                </tr>
+            </thead>
+            <tbody id="tevaluation">
+                <tr>
+                    <td>Size before evaluation</td>
+                    <td id="tableEvalBeforeSize"></td>
+                </tr>
+                <tr>
+                    <td>Size after evaluation</td>
+                    <td id="tableEvalAfterSize"></td>
+                </tr>
+                <tr>
+                    <td>Times Evaluated</td>
+                    <td id="tableEvalTimeEvalued"></td>
+                </tr>
+                <tr>
+                    <td>Error</td>
+                    <td id="tableEvalError"></td>
+                </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
+    <div class="span6">
+        <table class="span6 table  table-striped">
+            <thead>
+                <tr>
+                    <th colspan="2" id="tablename">Name of the File</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td>MD5</td>
+                    <td id="tablemd5"></td>
+                </tr>
+                <tr>
+                    <td>Base Date</td>
+                    <td id="tablebase_date"></td>
+                </tr>
+                <tr>
+                    <td>Last Date</td>
+                    <td id="tablelast_date"></td>
+                </tr>
+                <tr>
+                    <td>Times Seen</td>
+                    <td id="tabletimes_seen"></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td id="tabletype"></td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td  id="tablecategory"></td>
+                </tr>
+                <tr>
+                    <td>Comment</td>
+                    <td  id="tablecomment"></td>
+                </tr>
+                <tr style="display:none">
+                    <td style="display:none"></td>
+                    <td id="hiddenIdComment" style="display:none"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class='row' id='variousContainers'>
+    <div class="tabbable">
+        <ul class="nav nav-tabs">
+            <li class="active" id="originalFile"><a href="#tab1" data-toggle="tab">Original File</a></li>
+            <li id="evaluatedFile2"><a href="#tab2" data-toggle="tab">Evaluated File</a></li>
+            <li id="evaluatedFile3"><a href="#tab3" data-toggle="tab">Evaluated File (Alt)</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                    <h2>Original File</h2>
+                    <pre id="dangerousContainer" class="prettyprint linenums">
+                    </pre>
+            </div>
+            <div class="tab-pane" id="tab2">
+                <div id="rowForEvaluation2">
+                    <h2>Evaluated File</h2>
+                    <div class="text-info text-center" id="infoEvalSuggest"> If it doesn't work, please connect via ssh as user analysis</div>
+                    <pre id="evaluedContainer2" class="prettyprint linenums"></pre>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab3">
+                <div id="rowForEvaluation3">
+                    <h2>Evaluated File (alt)</h2>
+                    <div class="text-info text-center" id="infoEvalSuggest"> If it doesn't work, please connect via ssh as user analysis</div>
+
+                    <pre id="evaluedContainer3" class="prettyprint linenums"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src = "/SingleFileLoader.js"></script>
+</html>

@@ -1,0 +1,171 @@
+<html>
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="datepicker.css">
+    <link rel="stylesheet" href="datepicker.less">
+    <link rel="stylesheet" href="bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="bootstrap-modal.css">
+    <script type="text/javascript" src="jquery"></script>
+    <script type="text/javascript" src="d3"></script>
+    <script type="text/javascript" src="d3.geom"></script>
+    <script type="text/javascript" src="d3.layout"></script>
+    <script type="text/javascript" src="d3.ay-pie-chart"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap-modal.js"></script>
+    <script type="text/javascript" src="bootstrap-modalmanager.js"></script>
+
+    <script type="text/javascript" src="datepicker.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+/*        .todayPie {
+            height: 100%;
+            min-height: 100%;}
+        .newPie {
+            height: 100%;
+            min-height: 100%;}
+*/    path.g-1 { fill: #1f77b4; }
+    path.g-2 { fill: #aec7e8; }
+    path.g-3 { fill: #ff7f0e; }
+    path.g-4 { fill: #ffbb78; }
+    path.g-5 { fill: #2ca02c; }
+    path.g-6 { fill: #98df8a; }
+    path.g-7 { fill: #d62728; }
+    path.g-8 { fill: #ff9896; }
+    path.g-9 { fill: #9467bd; }
+    path.g-10 { fill: #c5b0d5; }
+    path.g-11 { fill: #8c564b; }
+    path.g-12 { fill: #c49c94; }
+    path.g-13 { fill: #e377c2; }
+    path.g-14 { fill: #f7b6d2; }
+    path.g-15 { fill: #7f7f7f; }
+    path.g-16 { fill: #c7c7c7; }
+    path.g-17 { fill: #bcbd22; }
+    path.g-18 { fill: #dbdb8d; }
+    path.g-19 { fill: #17becf; }
+    path.g-20 { fill: #9edae5; }
+
+    svg > g.label { text-anchor: middle; }
+
+    svg > g.labels g.label { -moz-pointer-events: none; -webkit-pointer-events: none; -o-pointer-events: none; pointer-events: none; }
+    svg > g.labels g.label rect { stroke: none; fill: #fff; fill-opacity: .5; shape-rendering: crispEdges; }
+    svg > g.labels g.label text { font-size: 12px; text-anchor: left; }
+    svg > g.labels g.label.active rect { fill-opacity: 1; }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Analysis of Web Artifacts</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/graphs">Graphs</a></li>
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="/map">Map</a></li>
+                        <li><a href="/clusterize">Clusterize</a></li>
+                        <li><a href="/clusters">Clusters</a></li>
+                        <li><a href="/top10">Top 10</a></li>
+                    </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-top: 10px">
+        <div class="hero-unit">
+            <div class="row">
+                <div class="span4 offset3">
+                    Click on a slice to obtain the list of files<br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4 offset3">
+                    <div class="span2 input-append date" id="dp_start" data-date-format="yyyy-mm-dd">
+                        <input class="" id="start_date" size="16" type="text" >
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                    <div class="row">
+                        <button class="offset1 span2 btn btn-primary" id="ShowPieGraphBtn">Choose another date</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row graphContainer" id="graphContainer">
+                <div class="row">
+                    <div class="span5" id="todayGraph">
+                        <h4 class="text-center">Files Received</h4>
+                        <svg class="todayPie"></svg>
+                    </div>
+                    <div class="span5" id="todayNewFiles">
+                        <h4 class="text-center">Files Categories</h4>
+
+                        <svg class="newPie"></svg>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span5" id="todayGraphMachines">
+                        <h4 class="text-center">Files Received per Machine</h4>
+                        <svg class="todayPieMachines"></svg>
+                    </div>
+                    <div class="span5" id="todayGraphRequests">
+                        <h4 class="text-center">Requests Received per Machine</h4>
+                        <svg class="todayPieRequests"></svg>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                        <p>
+                            <small>
+                                <strong>web1</strong>: PHPMyAdmin &nbsp;
+                                <strong>web2</strong>: OsCommerce&nbsp;
+                                <strong>web3</strong>: Joomla&nbsp;
+                                <strong>web4</strong>: Wordpress (blog)&nbsp;
+                                <strong>web5</strong>: SMF (forum)&nbsp;
+                                <strong>web6</strong>: Static&nbsp;
+                                <strong>web7</strong>: Wordpress (blog with captcha)
+                                <strong>web8</strong>: Drupal
+
+                            </small>
+                        </p>
+                </div>
+
+            <div class="row" id="textBoss">
+                <p>
+                Good Morning Boss,<br>
+                on date <span id="dayOfText"></span> we received a total of <span id="numberTotalFiles"></span> files, <span id="numberNewFiles"></span> of them are new and categorized,  <span id="numberUnknownFiles"></span> are new and unknown and <span id="numberOldFiles"></span> are old ones.<br>
+                I clustered the files into these categories:
+                </p>
+                <ul id="listOfFileClusters">
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div id="sliceDetailModal" class="modal hide container fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-replace="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel"></h3>
+        </div>
+            <div class="modal-body">
+                <div id="clustersNone">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="createGraphs.js"></script>
+</html>

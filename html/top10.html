@@ -1,0 +1,151 @@
+<html>
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="datepicker.css">
+    <link rel="stylesheet" href="datepicker.less">
+    <link rel="stylesheet" href="bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="bootstrap-sortable.css">
+    <link rel="stylesheet" href="bootstrap-modal.css">
+    <script type="text/javascript" src="jquery"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap-modal.js"></script>
+    <script type="text/javascript" src="bootstrap-modalmanager.js"></script>
+    <script type="text/javascript" src="datepicker.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+       .arrow {
+            border-left: 5px;
+        }
+        th {
+            padding-right: 20px !important;
+        }
+        .table {
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Analysis of Web Artifacts</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/graphs">Graphs</a></li>
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="/map">Map</a></li>
+                        <li><a href="/clusterize">Clusterize</a></li>
+                        <li><a href="/clusters">Clusters</a></li>
+                        <li><a href="/top10">Top 10</a></li>
+                    </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-top: 10px">
+        <div class="row">
+            <h3>Top 10 domains, Referers and dorks</h3>
+        </div>
+
+        <div class="row">
+            <h3>Top domains</h3>
+            <div class="row">
+            <div class="span9">
+            <!--    <div class="span2 input-append date" id="dp_start_domain" data-date-format="yyyy-mm-dd">
+                    <input class="" id="start_date_domain" size="16" type="text" >
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+            </div>
+            <div class="span3 offset1">
+                <div class="span2 input-append date" id="dp_end_domain" data-date-format="yyyy-mm-dd">
+                    <input class="" id="end_date_domain" size="16" type="text" >
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+            -->
+            <button class="span3 btn btn-primary domainBtn" id="ShowDomainIPbtn">Rank by Num IP</button>
+            <button class="span3 offset2 btn btn-primary domainBtn" id="ShowDomainReqbtn">Rank by Num Requests</button>
+            </div>
+            </div>
+            <div class="row" id="topDomainContainer">
+                <table class='table table-bordered table-striped table-hover sortable' id="topDomain" style="">
+                    <thead>
+                        <tr>
+                            <th>Domain<span class='arrow'></span></th>
+                            <th id="ipColumnDomain">NumIPs<span class='arrow'></span></th>
+                            <th id="reqColumnDomain">NumRequest<span class='arrow'></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="topDomainBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="row">
+            <h3>Top referer</h3>
+            <div class="span9">
+            <!--
+                <div class="span2 input-append date" id="dp_start_referer" data-date-format="yyyy-mm-dd">
+                    <input class="" id="start_date_referer" size="16" type="text" >
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+            </div>
+            <div class="span3 offset1">
+                <div class="span2 input-append date" id="dp_end_referer" data-date-format="yyyy-mm-dd">
+                    <input class="" id="end_date_referer" size="16" type="text" >
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+            -->
+                <button class="span3 btn btn-primary refererBtn" id="ShowRefererIPbtn">Rank by Num IP</button>
+                <button class="span3 offset2 btn btn-primary refererBtn" id="ShowRefererReqbtn">Rank by Num Requests</button>
+            </div>
+            </div>
+            <div class="row" id="topRefererContainer">
+                    <table class='table table-bordered table-striped table-hover sortable' id="topReferer" style="">
+                    <thead>
+                        <tr>
+                            <th>Url<span class='arrow'></span></th>
+                            <th id="ipColumnReferer">NumIPs<span class='arrow'></span></th>
+                            <th id="reqColumnReferer">NumRequest<span class='arrow'></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="topRefererBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            <div class="row">
+                <h3>Top 10 Dorks</h3>
+                <div class="row">
+                    <div class="span9">
+                        <button class="span3 btn btn-primary" id="dorksBtn">View Dorks</button>
+                    </div>
+                </div>
+                <div class="row" id="topDorksContainer">
+                    <table class='table table-bordered table-striped table-hover sortable' id="topDorks" style="">
+                        <thead>
+                            <tr><th>Dork<span class='arrow'></span></th>
+                            <th data-defaultsort='desc'>NumRequest<span class='arrow'></span></th></tr>
+                        </thead>
+                        <tbody id="topDorksBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+    </div>
+</body>
+<script type="text/javascript" src="/top10.js"></script>
+<script type="text/javascript" src="/bootstrap-sortable.js"></script>
+</html>

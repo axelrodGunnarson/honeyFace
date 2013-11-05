@@ -1,0 +1,71 @@
+<html>
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-responsive.min.css">
+    <script type="text/javascript" src="jquery"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+<style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Analysis of Web Artifacts</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/graphs">Graphs</a></li>
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="/map">Map</a></li>
+                        <li><a href="/clusterize">Clusterize</a></li>
+                        <li><a href="/clusters">Clusters</a></li>
+                        <li><a href="/top10">Top 10</a></li>
+                    </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class = "row">
+            <h3> Total Number Of Files: <strong id="TotalNumberOfFiles"></strong></h3>
+            <h3> Total Number Of Clusters: <strong id="TotalNumberOfClusters"></strong></h3>
+            <h3> Total Number Of Unknown Clusters: <strong id="TotalNumberOfUnknownClusters"></strong></h3>
+        </div>
+        <div class="row">
+            <div class="bs-docs-example">
+              <div class="accordion" id="clustersNone">
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="decideModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel"></h3>
+        </div>
+        <form action="/updateCategory" method="POST">
+            <fieldset>
+                <div class="modal-body">
+                    <legend>Choose the category for this cluster</legend>
+                    <div class="bs-docs-example" id="modalChoices">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button type="submit" class="btn btn-primary">Set category!</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="clusterize.js"></script>
+</html>

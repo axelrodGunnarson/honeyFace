@@ -1,0 +1,122 @@
+<html>
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="datepicker.css">
+    <link rel="stylesheet" href="datepicker.less">
+    <link rel="stylesheet" href="bootstrap-responsive.min.css">
+    <script type="text/javascript" src="jquery"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <script type="text/javascript" src="datepicker.js"></script>
+
+    <link rel="stylesheet" href="jquery-jvectormap.css" type="text/css" media="screen"/>
+  <script src="jquery-jvectormap.js"></script>
+  <script src="jvectormap-world-mill-en.js"></script>
+
+<style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Analysis of Web Artifacts</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/graphs">Graphs</a></li>
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="/map">Map</a></li>
+                        <li><a href="/clusterize">Clusterize</a></li>
+                        <li><a href="/clusters">Clusters</a></li>
+                        <li><a href="/top10">Top 10</a></li>
+                    </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span3 offset1">
+                <div class="row">
+                        <span class="span1">From:</span>
+                    <div class=" span2 input-append date" id="dp_start" data-date-format="yyyy-mm-dd">
+                        <input class="span2" id="start_date" size="16" type="text" >
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px">
+                        <span class="span1">To:</span>
+                    <div class="span2 input-append date" id="dp_end" data-date-format="yyyy-mm-dd">
+                        <input class="span2" id="end_date" size="16" type="text" >
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-top:20px">
+                    <button class="pull-right span2 btn btn-primary" id="ShowDatesbtn">Get map</button>
+                </div>
+            </div>
+            <div class ="span3 offset1">
+                <p>Select the machines</p>
+                <label class="checkbox">
+                    <input type="checkbox" class="machineCheck" name="machine0" id="machine0" value="0">All</input>
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" class="machineCheck" name="machine1" id="machine1" value="1">Web 1 - PHPMyAdmin</input>
+                </label>
+                <label class="checkbox">
+                   <input type="checkbox" class="machineCheck" name="machine2" id="machine2" value="2">Web 2 - OsCommerce</input>
+                </label>
+                <label class="checkbox">
+
+                   <input type="checkbox" class="machineCheck" name="machine3" id="machine3" value="3">Web 3 - Joomla</input>
+                </label>
+                <label class="checkbox">
+
+                    <input type="checkbox" class="machineCheck" name="machine4" id="machine4" value="4">Web 4 - Wordpress(blog)</input>
+                </label>
+                <label class="checkbox">
+
+                    <input type="checkbox" class="machineCheck" name="machine5" id="machine5" value="5">Web 5 - SMF (forum)</input>
+                </label>
+                <label class="checkbox">
+
+                    <input type="checkbox" class="machineCheck" name="machine6" id="machine6" value="6">Web 6 - Static</input>
+                </label>
+                <label class="checkbox">
+
+                    <input type="checkbox" class="machineCheck" name="machine7" id="machine7" value="7">Web 7 - Wordpress (blog with captcha)</input>
+                </label>
+                <label class="checkbox">
+
+                    <input type="checkbox" class="machineCheck" name="machine8" id="machine8" value="8">Web 8 - Drupal</input>
+                </label>
+            </div>
+            <div class ="span3">
+                <p>Select options</p>
+                <label class="checkbox">
+                    <input type="checkbox" class="displayOptions" name="crawlers" id="crawlers" value="1">Include Crawlers</input>
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" class="displayOptions" name="images" id="images" value="1">Include Images</input>
+                </label>
+            </div>
+        </div>
+        <div class = "row" style="margin-top: 50px">
+          <div id="world-map" class="span12">
+
+          </div>
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="WorldMapDataFeed.js"></script>
+</html>

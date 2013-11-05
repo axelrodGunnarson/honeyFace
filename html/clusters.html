@@ -1,0 +1,90 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-responsive.min.css">
+    <script type="text/javascript" src="/jquery"></script>
+    <script type="text/javascript" src="/bootstrap.min.js"></script>
+<style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <span style="display:none" id="categoryForLoading">CATEGORYFORLOADING</span>
+    <span style="display:none" id="clusterForLoading">CLUSTERFORLOADING</span>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">Analysis of Web Artifacts</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/graphs">Graphs</a></li>
+                        <li><a href="/stats">Stats</a></li>
+                        <li><a href="/map">Map</a></li>
+                        <li><a href="/clusterize">Clusterize</a></li>
+                        <li><a href="/clusters">Clusters</a></li>
+                        <li><a href="/top10">Top 10</a></li>
+                    </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class = "row">
+            <div class="span12">
+                <div class="row">
+                    <div class="span3 offset2 text-centered">Select Cluster Category </div>
+                    <div class="span4">
+                        <select id="typeSelect"></select>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="span3 offset2 text-centered"> Or Select Specific Cluster </div>
+                        <div class="span4"><input type="number" id="clusterNumberSelect" style="padding: 0px; margin: 0px" placeholder="Number of Cluster"></input></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 20px;">
+                        <button class=" offset5 btn btn-primary" id="getClusterbtn">Go To Cluster</button>
+                    </div>
+            </div>
+        </div>
+        <h3> Total Number Of Files: <strong id="TotalNumberOfFiles"></strong></h3>
+        <h3> Total Number Of Clusters: <strong id="TotalNumberOfClusters"></strong></h3>
+        <div style="margin-top:30px" class="row">
+            <div class="bs-docs-example span11" i>
+              <div class="accordion" id="clustersNone">
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="decideModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel"></h3>
+        </div>
+        <form action="/updateCategory" method="POST">
+            <fieldset>
+                <div class="modal-body">
+                    <legend>If you think that cluster <span id="clusterN"></span> is not of type <span id="clusterModalCat"></span>,<br> change it!</legend>
+                    <div class="bs-docs-example" id="modalChoices">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button type="submit" class="btn btn-primary">Set category!</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+</body>
+<script type="text/javascript" src="/getclusters.js"></script>
+</html>
